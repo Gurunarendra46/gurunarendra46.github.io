@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_top">
+</head>
+<body>
+	<form id="uploaderForm">
+		<label for="uploaderForm">Upload multiple Files</label>
+		<div>
+			<input type="text" name="applicantName" id="applicantName"
+				placeholder="Your Name">
+		</div>
+		<div>
+			<input type="text" name="applicantEmail" id="applicantEmail"
+				placeholder="Your Email">
+		</div>
+		<div>
+			<input type="file" name="filesToUpload" id="filesToUpload" multiple>
+			<input type="button" value="Submit" onclick="uploadFiles()">
+		</div>
+	</form>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div id="output"></div>
+	<script>
+		var rootFolderId = 'XXXXXX-XXX-XXXXXXXXXXXXXXXX';
+		var numUploads = {};
+		numUploads.done = 0;
+		numUploads.total = 0;
+		// Upload the files into a folder in drive
+		// This is set to send them all to one folder (specificed in the .gs file)
+		function uploadFiles() {
+			var allFiles = document.getElementById('filesToUpload').files;
+			var applicantName = document.getElementById('applicantName').value;
+			if (!applicantName) {
+				window.alert('Missing applicant name!');
+			}
+			var applicantEmail = document.getElementById('applicantEmail').value;
+			if (!applicantEmail) {
+				window.alert('Missing applicant email!');
+			}
+			var folderName = applicantName + ' ' + applicantEmail;
+			if (allFiles.length == 0) {
+				window.alert('No file selected!');
+			} else {
+				numUploads.total = allFiles.length;
+				google.script.run.withSuccessHandler(function(r) {
+					// send files after the folder is created...
+					for (var i = 0; i < allFiles.length; i++) {
+						// Send each file at a time
+						uploadFile(allFiles[i], r.folderId);
+					}
+				}).createFolder(rootFolderId, folderName);
+			}
+		}
+
+		function uploadFile(file, folderId) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				var content = reader.result;
+				document.getElementById('output').innerHTML = 'uploading '
+						+ file.name + '...';
+				//window.alert('uploading ' + file.name + '...');				
+				google.script.run.withSuccessHandler(onFileUploaded)
+						.uploadFile(content, file.name, folderId);
+			}
+			reader.readAsDataURL(file);
+		}
+
+		function onFileUploaded(r) {
+			numUploads.done++;
+			document.getElementById('output').innerHTML = 'uploaded '
+					+ r.fileName + ' (' + numUploads.done + '/'
+					+ numUploads.total + ' files).';
+			if (numUploads.done == numUploads.total) {
+				document.getElementById('output').innerHTML = 'All of the '
+						+ numUploads.total + ' files are uploaded';
+				numUploads.done = 0;
+			}
+		}
+	</script>
+</body>
+</html>
