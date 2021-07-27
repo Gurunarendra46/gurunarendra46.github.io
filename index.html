@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <h2>Welcome to file uploader to GDrive Page</h2><br>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="main.js"></script>
-</head>
-<body>
-   <div>
-       
-       <button id="login">
-           Click here to Upload Files to Drive
-       </button>
-   </div> 
-</body>
-</html>
+<br><br>
+<label for="Youtube URL">enter URL</label><br>
+<input type="text" placeholder="paste the  url here" name="url" id="url">
+<button onclick="generate(document.getElementById('url').value)">Generate Embed Code</button>
+
+<div class="container p-2 my-2">
+<p id="Video-Output"></p>
+<div class="container p-2 my-2 border">
+<p id="Embed-Code" style="text-align:left; color: white;">Generate and Check your Video Preview and Embed Code here</p>
+</div>
+</div>
