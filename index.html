@@ -2,31 +2,47 @@
 <html>
 
 <head>
+    <!--for titling purpose-->
     <title>How to get file extensions  </title>
 </head>
-
+<!--entire information present in body will align to center of page-->
 <body style="text-align: center;">
+    <!--heading named Extension Checker will be in color of Blue-->
     <h1 style="color: blue;">Extension Checker</h1>
+    <!--to get letters in bold -->
     <b>Select the file to get "Extension" of selected file</b>
+    <!-- for paragraph format-->
     <p>Select a file and click on the button
        to check the file extension.</p>
+    <!--for the user input ,use Form-->
     <form>
+        <!--here input type in file which need to chosen for further executions with id file1-->
         <input type="file" id="file1" />
-        <input type="button" value="Check For Extension" onclick="checkFileExtension();"/>
+        <!--here button and it goes to javscript file like function call-->
+        <input type="button" value="Check For Extension" onclick="checkExtension();"/>
 
 
     </form>
+    <!-- to display the outputs-->
     <p>The file extension is: <span class="output"></span></p>
     <p>The file name is: <span class="output1"></span></p>
+    <p>The file name with path is: <span class="output2"></span></p>
     <script language="javascript">
-        function checkFileExtension() {
+    //assgning name as checkextension
+        function checkExtension() {
+        //assigning file1 html element to fileNmae
             fileName = document.querySelector('#file1').value;
+        //to check the name of the file which is uploaded from user
             console.log(fileName);
-
-            extension1=fileName.split('/').pop();
+        //to split the upload images if filename has "." or "/"
+            //extension2=fileName.split('\').pop();
             extension = fileName.split('.').pop();
+            extension1=fileName.split(/(\\|\/)/g).pop()
+            //extension2 = fileName.split('').pop();
+        //to add popped file to extension and then to output for display
             document.querySelector('.output').textContent = extension;
             document.querySelector('.output1').textContent = extension1;
+            document.querySelector('.output2').textContent = fileName;
 
 
 };
