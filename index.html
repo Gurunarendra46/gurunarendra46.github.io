@@ -1,11 +1,39 @@
-<br><br>
-<label for="Youtube URL">enter URL</label><br>
-<input type="text" placeholder="paste the  url here" name="url" id="url">
-<button onclick="generate(document.getElementById('url').value)">Generate Embed Code</button>
+<!DOCTYPE html>
+<html>
 
-<div class="container p-2 my-2">
-<p id="Video-Output"></p>
-<div class="container p-2 my-2 border">
-<p id="Embed-Code" style="text-align:left; color: white;">Generate and Check your Video Preview and Embed Code here</p>
-</div>
-</div>
+<head>
+    <title>How to get file extensions  </title>
+</head>
+
+<body style="text-align: center;">
+    <h1 style="color: blue;">Extension Checker</h1>
+    <b>Select the file to get "Extension" of selected file</b>
+    <p>Select a file and click on the button
+       to check the file extension.</p>
+    <form>
+        <input type="file" id="file1" />
+        <input type="button" value="Check For Extension" onclick="checkFileExtension();"/>
+
+
+    </form>
+    <p>The file extension is: <span class="output"></span></p>
+    <p>The file name is: <span class="output1"></span></p>
+    <script language="javascript">
+        function checkFileExtension() {
+            fileName = document.querySelector('#file1').value;
+            console.log(fileName);
+
+            extension1=fileName.split('/').pop();
+            extension = fileName.split('.').pop();
+            document.querySelector('.output').textContent = extension;
+            document.querySelector('.output1').textContent = extension1;
+
+
+};
+
+    </script>
+
+
+</body>
+
+</html>
