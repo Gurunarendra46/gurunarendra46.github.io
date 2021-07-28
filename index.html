@@ -50,17 +50,29 @@
             extension1=fileName.split(/(\\|\/)/g).pop()
             //extension2 = fileName.split('').pop();
         //to add popped file to extension and then to output for display
+            //document.querySelector('.output').textContent = extension;
+            //document.querySelector('.output1').textContent = extension1;
+            //document.querySelector('.output2').textContent = fileName;
+
+            //var type=document.querySelector('.output').textContent;
             document.querySelector('.output').textContent = extension;
             document.querySelector('.output1').textContent = extension1;
             document.querySelector('.output2').textContent = fileName;
-            //document.write(document.querySelector('.output').textContent)
+
             var type=document.querySelector('.output').textContent;
-            //
+            var type2=document.querySelector('.output1').textContent;
+            var type3=document.querySelector('.output2').textContent
             if(type){
-            document.write("it's "+ type + " file")
+
+            //document.write(document.querySelector('.output').textContent)
+
+            document.write("it's "+ type + " file"+"<br>")
+            document.write("The file name is: "+type2+"<br>")
+            document.write("The file name with path is: "+type3)
+
             }
 /*
-            this is what i tried but simply we can get by mentioning above two lines 
+            this is what i tried but simply we can get by mentioning above two lines
             else if(type == "docx"){
             document.write("it's docx file")
             }
