@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <title>text-to-speech Conversion</title>
 </head>
-<body><center>
+<body>
+    <center>
 <!--<script type="text/javascript" src="https://code.responsivevoice.org/responsivevoice.js"></script>-->
   
   <!--sign in to the https://app.responsivevoice.org/ and get js file for text to speech and insert in ur html file-->
   
   
-    <script src="https://code.responsivevoice.org/responsivevoice.js?key=7cMZznzE"></script>
-<h2>text to speech conversion in english</h2>
- <textarea id="text" rows="10" cols="10" name="text"></textarea>
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=7cMZznzE"></script>
+  <h2>Text to Speech conversion in English</h2>
+  <textarea id="text" rows="10" cols="10" name="text"></textarea>
   <input type="button" onclick="texttospeech()" value="submit">
-</center>
+    </center>
+    
 <script>
 function texttospeech(){
 var text=document.getElementById("text").value;
